@@ -10,7 +10,136 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.titles{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: flex-start;
+  max-width: 1400px;
+  width: 100%;
+  gap: 50px;
+}
+.carouselTitleActive{
+  opacity: 1;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67);
+}
+
+.carouselTitle{
+  opacity: 0.5;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67);
+}
+
+.carouselactive{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  gap: 20px;
+  position: relative;
+  opacity: 1;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67);
+}
+
+.carousel{
+  opacity: 0;
+  display: none;
+}
+
+.buttons{
+  position: absolute;
+  right: 0;
+  top: -60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button{
+  border: 1px solid white;
+  background: none;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  font-size: 30px;
+  border-radius: 50px;
+  padding: 0 10px;
+  padding-bottom: 4px;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67);
+}
+
+.button:hover{
+  background: rgba(255, 255, 255, 0.5);
+  color: black
+}
+
+.carouselItem{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 0.5px solid transparent;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67)
+}
+
+.carouselItem:hover{
+  border: 0.5px solid white;
+
+}
+
+.carouselItem:hover .price{
+  transform: translateY(-10px);
+}
+
+.price{
+  margin-top: -30px;
+  margin-left: 5px;
+  background-color: white;
+  color: black;
+  padding: 2px;
+  transition: all 0.2s cubic-bezier(.17,.67,.83,.67)
+}
+.itemname{
+  margin-left: 5px;
+  margin-top: 10px;
+  
+}
+.itemcategory{
+  margin-left: 5px;
+  margin-top: -10px;
+}
+
+.blue {
+  background-color: blue;
+}
+.green{
+  background-color: green;
+}
+.green{
+  background-color: red;
+}
+.carouselimg{
+  width: 100%;
+  height: 200px;
+  margin-bottom: 5px;
+}
+
 
 .footer {
   display: flex;
