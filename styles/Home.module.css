@@ -71,6 +71,7 @@
 .items{
   width: 100%;
   position: relative;
+  max-width: 1400px;
 }
 .itemshidden{
   display: none;
