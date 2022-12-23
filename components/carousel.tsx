@@ -42,11 +42,26 @@ type Props = {
     const handlePageForward = (e) =>{
         let key = e.target.getAttribute("data-key");
         let width = window.innerWidth
+        let prevScroll = scrollState[key].scroll
+        let newScroll = 0
         if (width > 1400) {
             width = 1400
         }
+        if ((prevScroll + width) < scrollState[key].pages){
+            newScroll = scrollState[key].scroll = prevScroll + width
+        } else {
+            newScroll = prevScroll
+        }
+        scrollState.forEach(state => {
+            state.scroll = 0
+        });
+        scrollState[key].scroll = newScroll
+        setScroll(scrollState.map((item, i) => {
+            return {scroll: item.scroll, pages: item.pages}
+        }))
 
     }
+
 
     const handlePageBackward= (e) =>{
         let key = e.target.getAttribute("data-key");
@@ -57,12 +72,14 @@ type Props = {
             width = 1400
         }
         
-        if (prevScroll >= width){
+        if (prevScroll > width){
+            console.log("Fired")
             newScroll = scrollState[key].scroll = prevScroll - width
         }
         scrollState.forEach(state => {
             state.scroll = 0
         });
+        scrollState[key].scroll = newScroll
         setScroll(scrollState.map((item, i) => {
             return {scroll: item.scroll, pages: item.pages}
         }))
@@ -78,11 +95,12 @@ type Props = {
             </div>
                 {carouselData.map((item, i) => {
                     return(
-                        <div key={i} data-key={i}  className={activeState[i].active ? styles.carouselactive : styles.carousel} style={{transform: "translateX(-" + scrollState[i].scroll + ")"}}>
+                        <div key={"item" + i} className={activeState[i].active ? styles.items : styles.itemshidden}>
                             <div className={styles.buttons}>
-                                <button data-key={i} onClick={handlePageForward} className={styles.button}>{"<"}</button>
-                                <button data-key={i} onClick={handlePageBackward} className={styles.button}>{">"}</button>
+                                <button data-key={i} onClick={handlePageBackward} className={styles.button}>{"<"}</button>
+                                <button data-key={i} onClick={handlePageForward} className={styles.button}>{">"}</button>
                             </div>
+                        <div key={i} data-key={i}  className={activeState[i].active ? styles.carouselactive : styles.carousel} style={{transform: "translateX(-" + scrollState[i].scroll + "px)"}}>
                             {item.items.map((clown, i) => {
                                 return(
                                     <CarouselItem 
@@ -93,6 +111,7 @@ type Props = {
                                     price={clown.price}
                                     bgColor={clown.bgColor} />
                                 )})}
+                        </div>
                         </div>
                     )
                 })}

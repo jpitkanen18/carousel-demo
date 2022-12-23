@@ -68,6 +68,14 @@
   gap: 20px;
 }
 
+.items{
+  width: 100%;
+  position: relative;
+}
+.itemshidden{
+  display: none;
+}
+
 .button{
   border: 1px solid white;
   background: none;
